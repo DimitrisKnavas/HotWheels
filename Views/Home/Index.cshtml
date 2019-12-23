@@ -1,0 +1,279 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron"
+     style="text-align:center;margin-top:20px;">
+    <h1 style="text-align:center;font-family: 'Rock Salt', cursive;margin-bottom:40px;">HotWheels</h1>
+    <p>Find your dream car with a single click!</p>
+
+    <div style="display:flex;justify-content:center;">
+        <input id="search" class="input-lg" name="search" type="text" placeholder="Search a car" />
+        <button style="padding:0 30px;margin-left:10px;" class="btn btn-primary" id="search-button" value="Go">Go</button>
+    </div>
+
+</div>
+
+<div>
+    <div style="display:flex; justify-content: space-between;">
+        <div>
+            <h3 style="margin-top:0;padding:0px 10px;"><b>See the most viewed wheels so far</b></h3>
+        </div>
+        <div>
+            <a href=""><b>Find more here</b></a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="col-md-12 hw-card" id="popular1">
+                    <a href="/Cars/Details/15">
+                        <div style="position: relative; padding-bottom:75%">
+                            <div style="position:absolute; width:100%; height:100%; overflow:hidden;">
+                                <img id="image_popular1" class="img-responsive" style="height:100%" runat="server" src="https://localhost:44356/Images/notfound.png" alt="car">
+                            </div>
+                        </div>
+                        <div class="hw-card-info">
+                            <h5 id="brandmodel_popular1">Hyundai Accent</h5>
+                            <p id="price_popular1">Starting from</p>
+                            <p id="neg_popular1">Price Negotiable </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="col-md-12 hw-card" id="popular2">
+                    <a href="/Cars/Details/15">
+                        <div style="position: relative; padding-bottom:75%">
+                            <div style="position:absolute; width:100%; height:100%; overflow:hidden;">
+                                <img id="image_popular2" class="img-responsive" style="height:100%" runat="server" src="https://localhost:44356/Images/notfound.png" alt="car">
+                            </div>
+                        </div>
+                        <div class="hw-card-info">
+                            <h5 id="brandmodel_popular2">Hyundai Accent</h5>
+                            <p id="price_popular2">Starting from </p>
+                            <p id="neg_popular2">Price Negotiable </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="col-md-12 hw-card" id="popular3">
+                    <a href="/Cars/Details/15">
+                        <div style="position: relative; padding-bottom:75%">
+                            <div style="position:absolute; width:100%; height:100%; overflow:hidden;">
+                                <img id="image_popular3" class="img-responsive" style="height:100%" runat="server" src="https://localhost:44356/Images/notfound.png" alt="car">
+                            </div>
+                        </div>
+                        <div class="hw-card-info">
+                            <h5 id="brandmodel_popular3">Hyundai Accent</h5>
+                            <p id="price_popular3">Starting from </p>
+                            <p id="neg_popular3">Price Negotiable </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="col-md-12 hw-card" id="popular4">
+                    <a href="/Cars/Details/15">
+                        <div style="position: relative; padding-bottom:75%">
+                            <div style="position:absolute; width:100%; height:100%; overflow:hidden;">
+                                <img id="image_popular4" class="img-responsive" style="height:100%" runat="server" src="https://localhost:44356/Images/notfound.png" alt="car">
+                            </div>
+                        </div>
+                        <div class="hw-card-info">
+                            <h5 id="brandmodel_popular4">Hyundai Accent</h5>
+                            <p id="price_popular4">Starting from </p>
+                            <p id="neg_popular4">Price Negotiable </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<div>
+    <div style="display:flex; justify-content: space-between;">
+        <div>
+            <h3 style="margin-top:0;padding:0px 10px;"><b>See the latest wheels listed here</b></h3>
+        </div>
+        <div>
+            <a href=""><b>Find more here</b></a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="col-md-12 hw-card" id="latest1">
+                    <a href="/Cars/Details/15">
+                        <div style="position: relative; padding-bottom:75%">
+                            <div style="position:absolute; width:100%; height:100%; overflow:hidden;">
+                                <img id="image_latest1" class="img-responsive" style="height:100%" runat="server" src="https://localhost:44356/Images/notfound.png" alt="car">
+                            </div>
+                        </div>
+                        
+                        <div class="hw-card-info">
+                            <h5 id="brandmodel_latest1">Hyundai Accent</h5>
+                            <p id="price_latest1">Starting from </p>
+                            <p id="neg_latest1">Price Negotiable </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="col-md-12 hw-card" id="latest2">
+                    <a href="/Cars/Details/15">
+                        <div style="position: relative; padding-bottom:75%">
+                            <div style="position:absolute; width:100%; height:100%; overflow:hidden;">
+                                <img id="image_latest2" class="img-responsive" style="height:100%" runat="server" src="https://localhost:44356/Images/notfound.png" alt="car">
+                            </div>
+                        </div>
+                        <div class="hw-card-info">
+                            <h5 id="brandmodel_latest2">Hyundai Accent</h5>
+                            <p id="price_latest2">Starting from </p>
+                            <p id="neg_latest2">Price Negotiable </p>
+                         </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="col-md-12 hw-card" id="latest3">
+                    <a href="/Cars/Details/15">
+                        <div style="position: relative; padding-bottom:75%">
+                            <div style="position:absolute; width:100%; height:100%; overflow:hidden;">
+                                <img id="image_latest3" class="img-responsive" style="height:100%" runat="server" src="https://localhost:44356/Images/notfound.png" alt="car">
+                            </div>
+                        </div>
+                        <div class="hw-card-info">
+                            <h5 id="brandmodel_latest3">Hyundai Accent</h5>
+                            <p id="price_latest3">Starting from </p>
+                            <p id="neg_latest3">Price Negotiable </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="col-md-12 hw-card" id="latest4">
+                    <a href="/Cars/Details/15">
+                        <div style="position: relative; padding-bottom:75%">
+                            <div style="position:absolute; width:100%; height:100%; overflow:hidden;">
+                                <img id="image_latest4" class="img-responsive" style="height:100%" runat="server" src="https://localhost:44356/Images/notfound.png" alt="car">
+                            </div>
+                        </div>
+                        <div class="hw-card-info">
+                            <h5 id="brandmodel_latest4">Hyundai Accent</h5>
+                            <p id="price_latest4">Starting from </p>
+                            <p id="neg_latest4">Price Negotiable </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#search").click(function () {
+                $(this).attr("placeholder", "");
+            });
+
+            $("#search-button").click(function () {
+                    var parameter = $("#search").val();
+                    window.location.replace("/Cars/Search/" + parameter);
+            });
+
+            $("#search").blur(function () {
+                $(this).attr("placeholder", "Search a car");
+            });
+
+            $.ajax({
+                type: "get",
+                url: "/Cars/GetLatestCars",
+                success: function (response) {
+                    
+                    for (i = 0; i < response.length; i++) {
+                        $("#latest" + (i + 1) + " > a").attr("href", "/Cars/Details/" + response[i].Id);
+                        if (response[i].ImageUrl == null) {
+                            $("#image_latest" + (i + 1)).attr("src", "https://localhost:44356/Images/notfound.png");
+                        }
+                        else {
+                            $("#image_latest" + (i + 1)).attr("src", "https://localhost:44356/Images/" + response[i].ImageUrl);
+                        }
+                        $("#brandmodel_latest" + (i + 1)).text(response[i].Brand + " " + response[i].Model);
+                        $("#price_latest" + (i + 1)).append(" " + response[i].Price);
+                        if (response[i].IsNegotiable) {
+                            $("#neg_latest" + (i + 1)).append(" &radic;");
+                        }
+                        else {
+                            $("#neg_latest" + (i + 1)).append(" false");
+                        }
+                        
+                    }
+                }
+            });
+
+            $.ajax({
+                type: "get",
+                url: "/Cars/GetPopularCars",
+                success: function (response) {
+                    
+                    for (i = 0; i < response.length; i++) {
+                        $("#popular" + (i + 1) + " > a").attr("href", "/Cars/Details/" + response[i].Id);
+                        if (response[i].ImageUrl == null) {
+                            $("#image_popular" + (i + 1)).attr("src", "https://localhost:44356/Images/notfound.png");
+                        }
+                        else {
+                            $("#image_popular" + (i + 1)).attr("src", "https://localhost:44356/Images/" + response[i].ImageUrl);
+                        }
+                        $("#brandmodel_popular" + (i + 1)).text(response[i].Brand + " " + response[i].Model);
+                        $("#price_popular" + (i + 1)).append(" " + response[i].Price);
+                        if (response[i].IsNegotiable) {
+                            $("#neg_popular" + (i + 1)).append(" &radic;");
+                        }
+                        else {
+                            $("#neg_popular" + (i + 1)).append(" &times;");
+                        }
+                        
+                    }
+                }
+             });
+        });
+            
+        var tags =[]
+        $.ajax({
+                type: "get",
+                url: "/Models/GetModels",
+            success: function (response) {
+                for (i = 0; i < response.length; i++) {
+                    tags.push(response[i].Name);
+                    var found = jQuery.inArray(response[i].BrandName, tags);
+                    if (found < 0) {
+                        // Element was not found, add it.
+                        tags.push(response[i].BrandName)
+                    }
+                }
+                console.log(tags);
+            }
+        });
+
+
+            
+            $( "#search" ).autocomplete({
+              source: function( request, response ) {
+                      var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                      response( $.grep( tags, function( item ){
+                          return matcher.test( item );
+                      }) );
+                  }
+            });
+
+    </script>
+}

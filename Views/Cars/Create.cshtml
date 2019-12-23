@@ -1,0 +1,195 @@
+﻿@model HotWheels.Models.CarViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+<form id="carform" name="carform" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Car</h4>
+        <hr />
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Brand">Brand</label>
+            <div class="col-md-10">
+                <select class="form-control" id="Brand" name="Brand">
+                    <option value="">--Choose Brand--</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Model">Model</label>
+            <div class="col-md-10">
+                <select class="form-control" id="Model" name="Model">
+                    <option value="">--Choose Model--</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Color">Color</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="Color" name="Color" type="text" value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="cc">cc</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="cc" name="cc" type="text" value="" placeholder="e.g. 1400" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Price">Price</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="Price" name="Price" type="text" value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="IsNegotiable">Negotiate Price</label>
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <label><input class="form-control radio-inline" id="IsNegotiable" name="IsNegotiable" type="radio" value="False" checked />No</label>
+                </div>
+                <div class="col-md-2">
+                    <label style="width: 18.67px;"><input class="form-control radio-inline" id="IsNegotiable" name="IsNegotiable" type="radio" value="True" />Yes</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Description">Description</label>
+            <div class="col-md-10">
+                <textarea class="form-control" id="Description" name="Description" rows="7"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+                <label class="control-label col-md-2" for="file">Upload Image :</label>
+                <div class="col-md-10" style="padding-top:5px;margin-bottom:20px;">
+                    <input type="file" id="file" name="Image">
+                </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="submit-btn" type="submit" value="Create" class="btn btn-success" data-url="@Url.Action("Create", "Cars")" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/js/Modules/CarModule.js"></script>
+    <script>
+        $(document).ready(function () {
+            getBrandsForDropDown();
+            CarModule.validateForm();
+        });
+
+        function getBrandsForDropDown() {
+            $.ajax({
+                type: "get",
+                url: "/Brands/GetBrands",
+                success: function (response) {
+
+                    var brands = response;
+
+                    brands.forEach(function (item) {
+
+                        $("#Brand").append('<option>' + item.Name + '</option>');
+
+                    });
+                }
+            })
+        }
+
+        $("#Brand").change(function () {
+            var selectedBrand = $("#Brand").val();
+            $("#Model").empty();
+            getModelsForBrandOnChange(selectedBrand);
+        });
+
+        function getModelsForBrandOnChange(brand) {
+            $.ajax({
+                type: "get",
+                url: "/Models/GetModelsFromBrandName",
+                data: { brand: brand },
+                success: function (response) {
+
+                    var models = response;
+
+                    models.forEach(function (item) {
+                        $("#Model").append('<option>' + item.Name + '</option>');
+                    });
+
+                }
+            })
+        }
+
+        $('#submit-btn').on('click', function (e) {
+
+            //if data sent manually i must prevent default form submit
+            e.preventDefault();
+            
+            var formdata = new FormData();
+            formdata.append('__RequestVerificationToken', $('[name=__RequestVerificationToken]').val());
+            formdata.append('Brand', $("#Brand").val());
+            formdata.append('Model', $("#Model").val());
+            formdata.append('Color', $("#Color").val());
+            formdata.append('cc', $("#cc").val());
+            formdata.append('Price', $("#Price").val());
+            formdata.append('IsNegotiable', $('input[name=IsNegotiable]:checked').val());
+            formdata.append('Description', $("#Description").val());
+            formdata.append('Image',$('input[type=file]')[0].files[0]);
+            
+           
+            $.ajax({
+                url: $(this).data('url'),
+                type: 'post',
+                data: formdata,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    //alert(response);
+                    window.location.replace("/Cars/Index");
+
+                },
+                error: function (response) {
+                    console.log(response.error);
+                }
+            });
+        });
+
+            //post with fetch(antiforgery token needs to be retrieved) https://stackoverflow.com/questions/53469047/how-to-use-antiforgerytoken-with-fetch
+
+            //document.forms[0].onsubmit = () => {
+            //    let formData = new FormData(document.forms[0]);
+
+            //    fetch("/Cars/Create", {
+            //        method: 'post',
+            //        body: new URLSearchParams(formData)
+            //    })
+            //        .then(() => {
+            //            window.location.replace("/Cars/Index");
+            //        });
+            //    return false;
+
+            //}
+    </script>
+}

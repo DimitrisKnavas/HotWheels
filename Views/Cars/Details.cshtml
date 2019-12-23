@@ -1,0 +1,88 @@
+﻿@model HotWheels.Models.CarViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Car</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6 col-xs-12" style="margin-bottom:10px;">
+            <img class="img-responsive" style="width:130%;" runat="server" src="https://localhost:44356/Images/notfound.png" alt="car">
+        </div>
+        <div class="col-md-6" style="font-size:large;">
+            <dl class="dl-horizontal">
+                <dt>
+                    Brand:
+                </dt>
+
+                <dd>
+                    <p id="Brand"></p>
+                </dd>
+
+                <dt>
+                    Model:
+                </dt>
+
+                <dd>
+                    <p id="Model"></p>
+                </dd>
+
+                <dt>
+                    Color:
+                </dt>
+
+                <dd>
+                    <p id="Color"></p>
+                </dd>
+
+                <dt>
+                    cc:
+                </dt>
+
+                <dd>
+                    <p id="cc"></p>
+                </dd>
+
+                <dt>
+                    Price:
+                </dt>
+
+                <dd>
+                    <p id="Price"></p>
+                </dd>
+
+                <dt>
+                    Price Negotiable:
+                </dt>
+
+                <dd>
+                    <p id="Neg"></p>
+                </dd>
+
+                <dt>
+                    Description:
+                </dt>
+
+                <dd>
+                    <p id="Desc"></p>
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+    
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/js/Modules/CarModule.js"></script>
+    <script src="~/js/Details.js"></script>
+}

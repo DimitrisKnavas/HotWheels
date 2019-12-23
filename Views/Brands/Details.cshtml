@@ -1,0 +1,31 @@
+﻿@model HotWheels.Models.Brand
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <table class="table table-bordered" style="width:30%;text-align:center;">
+        <thead>
+            <tr>
+                <th align="center">@Html.DisplayFor(model => model.Name)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Models)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.Name)</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Models", new { id = item.Id }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Add new Model", "Create","Models", new { id = Model.Id },null) |
+    @*@Html.ActionLink("Delete Model", "Delete","Models", new { id = Model.Id },null) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>

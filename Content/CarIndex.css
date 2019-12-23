@@ -1,0 +1,61 @@
+﻿.car-container {
+    padding: 80px;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    grid-template-rows: 200px 200px 200px 200px;
+    justify-items: center;
+    justify-content: center;
+    grid-gap: 30px 30px;
+}
+
+.image {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    position: relative;
+}
+
+/*img {
+    position: relative;
+    width: inherit;
+    height: inherit;
+}*/
+
+.most-viewed-container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 250px 500px 250px 500px;
+    justify-items: center;
+    justify-content: center;
+    grid-gap: 15px 15px;
+}
+
+.car-block{
+    
+    background-color:goldenrod;
+    width:230px;
+    height:450px;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+.hw-card {
+    background-color: goldenrod;
+    border-radius: 10px;
+    box-shadow:2px 2px 5px #ddd;
+    padding:0 !important;
+    overflow:hidden;
+    margin:10px 0;
+}
+
+.hw-card-info{
+    padding:10px;
+}
+
+.hw-card a{
+    color:white !important;
+}
+
+

@@ -1,0 +1,182 @@
+﻿@model IEnumerable<HotWheels.Models.CarViewModel>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div>
+        <div style="display:flex; justify-content: space-between;">
+            <div>
+                <h2>Results for : @ViewBag.CarName</h2>
+            </div>
+            @*<div style="padding-top:25px;">
+                @Html.ActionLink("Create New", "Create")
+            </div>*@
+        </div>
+        @{
+            int cars = Model.Count();
+            if (cars == 0)
+            {
+                <div style="text-align:center;">
+                    <p style="font-size:large;"><b>No matches found!</b><i class="far fa-frown"></i></p>
+                </div>
+            }
+        }
+
+        <div class="container">
+            @{ int idCounter = 0;}
+            @for (int i = 0; i <= cars / 4; i++)
+            {
+                <div class="row">
+                    @* if im at the last row *@
+                    @{int cards;}
+                    @if (i == cars / 4)
+                    {
+                        cards = cars % 4;
+                    }
+                    else
+                    {
+                        cards = 4;
+                    }
+
+                    @for (int j = 0; j < cards; j++)
+                    {
+                        <div class="col-md-3 col-sm-6">
+                            <div id="hw-card_@idCounter" class="col-md-12 hw-card">
+                                <a id="@idCounter" href="">
+                                    <div style="position: relative; padding-bottom:75%">
+                                        <div style="position:absolute; width:100%; height:100%; overflow:hidden;">
+                                            <img id="image_@idCounter" class="img-responsive" style="height:100%" runat="server" src="https://localhost:44356/Images/notfound.png" alt="car">
+                                        </div>
+                                    </div>
+                                    <div class="hw-card-info">
+                                        <h5 id="Brand_@idCounter">Hyundai Accent</h5>
+                                        <h5 id="Model_@idCounter">Hyundai Accent</h5>
+                                        <p id="Price_@idCounter">Starting from </p>
+                                        <p id="Negotiable_@idCounter">Price Negotiable </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        idCounter++;
+                    }
+                </div>
+
+            }
+
+
+        </div>
+        <div class="container-fluid">
+            <nav>
+                <ul class="pagination">
+                    @*<li class="disabled">
+                        <a href="" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>*@
+                    <li class="hw-cars-page-button active" data-page="1">
+                        <a href="">
+                            1
+                        </a>
+                    </li>
+                    <li class="hw-cars-page-button" data-page="2">
+                        <a href="">2</a>
+                    </li>
+                    @*<li>
+                        <a href="" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>*@
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+@section Scripts{ 
+    <script>
+        $(document).ready(function () {
+            var link = "/Cars/Details/";
+            var carName = '@ViewBag.CarName';
+            var cars = [];
+            ajax(carName).done(function (result) {
+                cars = result;
+                
+                for (i = 0; i < cars.length; i++) {
+                    $("#" + i).attr("href", link + cars[i].Id);
+                    if (cars[i].ImageUrl == null) {
+                        $("#image_" + i).attr("src", "https://localhost:44356/Images/notfound.png");
+                    }
+                    else {
+                        $("#image_" + i).attr("src", "https://localhost:44356/Images/" + cars[i].ImageUrl);
+                    }
+                    
+                    $("#Brand_"+i).text(cars[i].Brand);
+                    $("#Model_" + i).text(cars[i].Model);
+                    $("#Price_" + i).append(cars[i].Price);
+                    if (cars[i].IsNegotiable) {
+                        $("#Negotiable_" + i).append("&radic;");
+                    }
+                    else $("#Negotiable_" + i).append("&times;");
+                }
+            }).fail(function () {
+                console.log("Failed to get search results for " + carName);
+            });
+
+            
+        });
+
+        function ajax(carName) {
+            return $.ajax({
+                        type: "get",
+                        url: "/Cars/SearchResult",
+                        data: { id: carName },
+                        success: function (response) {
+                            return response;
+                        },
+                        error: function (response) {
+                            return undefined;
+                        }
+                    });
+        }
+
+
+        function pagination() {
+            var cars = @Model.Count();
+            
+            var output = $("#page1").hasClass("active")
+            debugger
+            if (output) {
+                debugger
+                var i = 0;
+                while (i < 8) {
+                    $("#hw-card_" + i).hide();
+                    i++;
+                }
+                while (i >= 8 && i < cars) {
+                    $("#hw-card_" + i).show();
+                    i++;
+                }
+                $("#page1").removeClass("active");
+                $("#page2").addClass("active");
+            }
+            else if ($("#page2").hasClass("active")) {
+                var i = 8;
+                while (i >= 8 && i < cars) {
+                    $("#hw-card_" + i).hide();
+                    i++;
+                }
+                i = 0;
+                while (i < 8) {
+                    $("#hw-card_" + i).show();
+                    i++;
+                }
+                $("#page2").removeClass("active");
+                $("#page1").addClass("active");
+                
+            }
+            return console.log("Page changed!");
+        }
+    </script>
+}
